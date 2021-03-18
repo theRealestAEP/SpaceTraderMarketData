@@ -1,0 +1,18 @@
+// @font-face {
+//     font-family: 'commodore_64_angledregular';
+//     src: url('./assets/fonts/commodore_angled_v1.2-webfont.woff2') format('woff2'),
+//          url('./assets/fonts/commodore_angled_v1.2-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+  
+//   }
+
+// $font-family-sans-serif: 'commodore_64_angledregular';
+$body-bg:                   #d1cbcbb0;
+$font-size-base:              .8rem; 
+// $body-color:                   #808080;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+//variable overides
