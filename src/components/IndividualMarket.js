@@ -51,7 +51,8 @@ export default class SingleMarket extends React.Component {
     dropdownOpenWindow: false,
     curInterval: 10, //minutes
     curWindow: 5, //hrs
-    curItem: 'FUEL'
+    curItem: 'FUEL',
+    timestamp: ''
   };
 
   // [dropdownOpen, setOpen] =
@@ -81,7 +82,7 @@ export default class SingleMarket extends React.Component {
   componentDidUpdate() {
     if (this.state.curCollection != this.props.curCollection) {
       this.setState(
-        { ...this.state, curCollection: this.props.curCollection },
+        { ...this.state, curCollection: this.props.curCollection, timestamp:'' },
         this.getData
         // this.getGraph
       );
@@ -107,7 +108,7 @@ export default class SingleMarket extends React.Component {
   };
 
   applyToGraph = (item) => {
-    this.setState({...this.state, curItem:item})
+    this.setState({ ...this.state, curItem: item })
   }
 
   getData = () => {
@@ -123,6 +124,9 @@ export default class SingleMarket extends React.Component {
           //   console.log(item.data());
 
           let dat = item.data();
+          // The 0 there is the key, which sets the date to the epoch
+          let d = new Date(dat["date"])
+          this.state.timestamp = d.toString()
           delete dat["date"];
           list.push(dat);
         });
@@ -139,17 +143,18 @@ export default class SingleMarket extends React.Component {
             <h2>{this.props.curCollection}</h2>
             <Container>
               <Card>
-                  <Container>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Good</th>
-                      <th>Cost</th>
-                      <th>Volume/Unit</th>
-                      <th>Quantity</th>
-                    </tr>
-                  </thead>
+                <Container>
+                  <Table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Good</th>
+                        <th>Cost</th>
+                        <th>Spread</th>
+                        <th>Volume/Unit</th>
+                        <th>Quantity</th>
+                      </tr>
+                    </thead>
                     <tbody>
                       {this.state.Data.map((data, index1) =>
                         Object.entries(data)
@@ -158,18 +163,21 @@ export default class SingleMarket extends React.Component {
                             //   console.log(entry),
                             <tr>
                               <th scope="row">
-                                <Button onClick={()=>{this.applyToGraph(entry[0])}}>Graph</Button>
+                                <Button onClick={() => { this.applyToGraph(entry[0]) }}>Graph</Button>
                               </th>
                               <td>{entry[0]}</td>
                               <td>{entry[1].price}</td>
+                              <td>{entry[1].spread}</td>
                               <td>{entry[1].volume}</td>
                               <td>{entry[1].available}</td>
+
                             </tr>
                           ))
                       )}
                     </tbody>
-                </Table>
-                  </Container>
+                  </Table>
+                    <p>{this.state.timestamp}</p>
+                </Container>
               </Card>
             </Container>
             <div class="refreshButton">
@@ -198,7 +206,7 @@ export default class SingleMarket extends React.Component {
                               toggle={this.setOpenInterval}
                             >
                               <DropdownToggle caret>
-                                Select Interval{" "}
+                                Select Interval
                               </DropdownToggle>
                               <DropdownMenu>
                                 <DropdownItem
@@ -283,11 +291,11 @@ export default class SingleMarket extends React.Component {
           </Col>
           <Col>
             {/* <Container> */}
-              <MarketGraphV2
-                curCollection={this.props.curCollection}
-                curInterval={this.state.curInterval}
-                curWindow={this.state.curWindow}
-                curItem={this.state.curItem}></MarketGraphV2>
+            <MarketGraphV2
+              curCollection={this.props.curCollection}
+              curInterval={this.state.curInterval}
+              curWindow={this.state.curWindow}
+              curItem={this.state.curItem}></MarketGraphV2>
             {/* </Container> */}
           </Col>
         </Row>
