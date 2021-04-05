@@ -454,9 +454,9 @@ export default class SingleMarket extends React.Component {
           let htm
           if (typeof (this.state[curated[i + 1]]) == 'undefined') {
             let label = 'Credits Per Distance Volume:'
-            if (curated[i] == 'RESEARCH') {
-              label = 'Credits Per Distance:'
-            }
+            // if (curated[i] == 'RESEARCH') {
+            //   label = 'Credits Per Distance:'
+            // }
             htm = (
               <div class="marketItem">
                 <Container fluid="lg">
@@ -544,12 +544,12 @@ export default class SingleMarket extends React.Component {
             let label = 'Credits Per Distance Volume:'
             let label2 = 'Credits Per Distance Volume:'
 
-            if (curated[i] == 'RESEARCH') {
-              label = 'Credits Per Distance:'
-            }
-            if (curated[i+1] == 'RESEARCH') {
-              label2 = 'Credits Per Distance:'
-            }
+            // if (curated[i] == 'RESEARCH') {
+            //   label = 'Credits Per Distance:'
+            // }
+            // if (curated[i+1] == 'RESEARCH') {
+            //   label2 = 'Credits Per Distance:'
+            // }
             htm = (
               <div class="marketItem">
                 <Container fluid="lg">
