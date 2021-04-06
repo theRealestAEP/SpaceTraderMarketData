@@ -152,6 +152,9 @@ export default class Everything extends React.Component {
                     <DropdownItem onClick={() => this.upDateSystem("XV-TLF")}>
                       XV-TLF
                     </DropdownItem>
+                    <DropdownItem onClick={() => this.upDateSystem("XV-OS")}>
+                      XV-OS
+                    </DropdownItem>
                     <DropdownItem onClick={() => this.upDateSystem("XV-SN")}>
                       XV-SN
                     </DropdownItem>
