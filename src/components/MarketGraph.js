@@ -20,7 +20,7 @@ const MarketGraph = (data, inputInterval, inputWindow) => {
     MACHINERY: "red",
     RESEARCH: "green",
     SHIP_PARTS: "purple",
-    WORKERS: "cyan",
+    DRONES: "cyan",
     METALS: "silver",
     CHEMICALS: "pink",
     SHIP_PLATING: "navy",
